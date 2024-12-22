@@ -23,7 +23,7 @@
                                   <p class="text-gray-800 my-2">Bedankt dat u voortijdig heeft geannuleerd!</p>
                                   <p>Ga naar de homepagina om opnieuw te reserveren!</p>
                                   <div class="text-gray-800 py-10 text-center">
-                                      <a href="{{route('welcome')}}" class="px-12 bg-sky-600 hover:bg-sky-500 text-white font-semibold py-3">
+                                      <a href="{{route('home')}}" class="px-12 bg-sky-600 hover:bg-sky-500 text-white font-semibold py-3">
                                           Terug naar home 
                                      </a>
                                   </div>

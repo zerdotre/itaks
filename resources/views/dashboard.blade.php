@@ -12,7 +12,7 @@
                             <h3 class="text-xl font-bold leading-6 font-medium text-gray-900">Reserveringen</h3>
                         </div>
                         <div class="ml-4 mt-2 flex-shrink-0">
-                            <a href="{{route('welcome')}}" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                            <a href="{{route('home')}}" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
                                 Nieuwe Reservering
                             </a>
                         </div>

@@ -17,17 +17,17 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name'  => 'IsmailAbi',
-            'email' => 'ismailabi@taxi-reserveren.com',
-            'role'  => 'admin',
-            'password'  => Hash::make('tPcu9xzz8igHKW'),
+            'name'  => 'Adminitaks',
+            'email' => 'adminitaks@taxiclick.com',
+            // 'role'  => 'admin',
+            'password'  => Hash::make('4QusPTPuBTi7m3'),
         ]);
 
         \App\Models\User::factory()->create([
             'name'  => 'Test Klant',
             'phone'  => '0612345678',
-            'email' => 'akyaren70@gmail.com',
-            'role'  => 'user',
+            'email' => 'zerdotre@gmail.com',
+            // 'role'  => 'user',
             'password'  => Hash::make('12345678'),
         ]);
 
@@ -493,7 +493,6 @@ class DatabaseSeeder extends Seeder
                 ['place_id' =>132, 'vehicle_id' => 2, 'price' => 7000],
                 ['place_id' =>133, 'vehicle_id' => 2, 'price' => 8000],
                 ['place_id' =>134, 'vehicle_id' => 2, 'price' => 6900],
-
                 ['place_id' => 135, 'vehicle_id' => 2, 'price' => 7000],
                 ['place_id' => 136, 'vehicle_id' => 2, 'price' => 7000],
                 ['place_id' => 137, 'vehicle_id' => 2, 'price' => 7000],

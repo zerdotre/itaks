@@ -39,7 +39,7 @@
                             <span class="text-right flex flex-col justify-between">
                                 <div class="flex flex-col">
                                     <span class="text-lg font-bold text-sky-700">
-                                        {{Helper::strfmon($prices[$vehicle->id]['total'])}}
+                                        {{ Helper::strfmon($prices[$vehicle->id]['total']) }}
                                     </span>
                                     <span class="text-gray-500 text-sm">Enkele rit</span>
                                 </div>
