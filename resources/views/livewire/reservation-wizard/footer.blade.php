@@ -3,4 +3,7 @@
         <span wire:loading.delay.remove>{{ $button_text }}</span>
         <span wire:loading.delay>Laden...</span>
     </flux:button>
+
+    @script <script> $wire.on('scroll-to-top', () => { scrollToTop(); }); </script> @endscript
+
 </div>

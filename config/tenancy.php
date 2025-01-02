@@ -8,7 +8,6 @@ use Stancl\Tenancy\Database\Models\Tenant;
 return [
     'tenant_model' => \App\Models\Tenant::class,
     'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
-
     'domain_model' => Domain::class,
 
     /**
@@ -17,9 +16,7 @@ return [
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
     'central_domains' => [
-        'itaks.test',
-        '127.0.0.1',
-        'localhost',
+        'itaks.test', '127.0.0.1', 'localhost',
     ],
 
     /**
@@ -42,18 +39,22 @@ return [
     'database' => [
         'central_connection' => env('DB_CONNECTION', 'sqlite'),
 
+        'filesystem_path' => database_path('tenants'),
+        'manager' => \App\Providers\CustomSQLiteDatabaseManager::class,
+
+
         /**
          * Connection used as a "template" for the dynamically created tenant database connection.
          * Note: don't name your template connection tenant. That name is reserved by package.
          */
         'template_tenant_connection' => null,
-
+        
         /**
          * Tenant database names are created like this:
          * prefix + tenant_id + suffix.
          */
-        'prefix' => 'tenant',
-        'suffix' => '',
+        'prefix' => 'tenants/',
+        'suffix' => '.sqlite',
 
         /**
          * TenantDatabaseManagers are classes that handle the creation & deletion of tenant databases.

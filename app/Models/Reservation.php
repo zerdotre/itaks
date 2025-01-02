@@ -13,8 +13,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'vehicle_id', 'origin_id', 'destination_id', 'datetime', 'flight_nr', 'people', 'payment_method', 'luggage',
-    'price', 'distance', 'duration', 'handluggage', 'comments', 'status', 'google_calendar_event_id', 'retour_id', 'is_retour'];
+    protected $guarded = ['id'];
     
     public static $statuses = [
         'new' => 'new',

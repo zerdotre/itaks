@@ -7,7 +7,6 @@
 
         <title>{{ config('app.name', 'iTaks') }}</title>
         
-        @livewireStyles
         @fluxStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @yield('styles')
@@ -15,7 +14,7 @@
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        @include('layouts.navigation')
+        @include('components.layouts.navigation')
 
         <flux:main container class="!p-4 md:!p-6 lg:!p-8">
 
@@ -28,7 +27,6 @@
         </flux:main>
 
         <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
-        @livewireScripts
         @fluxScripts
         <script>window.GOOGLE_MAPS_API_KEY = "{{Config::get('googlemaps.key')}}";</script>
         @yield('scripts')

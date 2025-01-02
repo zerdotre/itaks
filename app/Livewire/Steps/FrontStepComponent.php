@@ -303,14 +303,16 @@ class FrontStepComponent extends StepComponent
             foreach ($vehicles as $vehicle) {
                 $prices[$vehicle->id]['waypoint_count']  = $waypoint_count;
                 $prices[$vehicle->id]['price_waypoints'] = Helper::intfflo($vehicle->price_waypoint * $waypoint_count);
-                $prices[$vehicle->id]['total']           = (int) (ceil($prices[$vehicle->id]['subtotal'] + $prices[$vehicle->id]['price_waypoints'])*100);
+                $prices[$vehicle->id]['total']           = (int) (round($prices[$vehicle->id]['subtotal'] + $prices[$vehicle->id]['price_waypoints'] * 200 ,0) /2); // rounded to nearest 0,50
+                // $prices[$vehicle->id]['total']           = (int) (ceil($prices[$vehicle->id]['subtotal'] + $prices[$vehicle->id]['price_waypoints'])*100); // rounded to whole numbers
             }
 
         }else{
 
             foreach ($vehicles as $vehicle) {
     
-                $prices[$vehicle->id]['total'] = (int) (ceil($prices[$vehicle->id]['subtotal']) * 100);
+                $prices[$vehicle->id]['total'] = (int) (round($prices[$vehicle->id]['subtotal'] * 200, 0)/2); // afgerond 0p 0,50
+                // $prices[$vehicle->id]['total'] = (int) (ceil($prices[$vehicle->id]['subtotal']) * 100); // afgerond op hele getallen
     
             }
 

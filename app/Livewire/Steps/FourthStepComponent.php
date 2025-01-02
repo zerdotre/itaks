@@ -32,6 +32,9 @@ class FourthStepComponent extends StepComponent
         $this->vehicle_id = $this->state()->forStep('third')['chosen_vehicle'];
         
         $this->vehicle_name = Vehicle::find($this->vehicle_id)->name;
+
+        $this->dispatch('scroll-to-top');
+
     }
 
     public function render()
@@ -57,17 +60,20 @@ class FourthStepComponent extends StepComponent
     {
         $this->validate();
 
+        // create user
+        $user = $this->processUserData();
+
         $data = $this->state()->all();
 
         // first create origin & destination addresses
-        $origin         = Address::updateOrCreate(
+        $origin         = Address::firstOrCreate(
             ['user_id' => $user->id, 'place_id' => $data['front']['waypoint_data']['from']['place_id']],
             $data['front']['waypoint_data']['from']
         );
         
-        $destination    = Address::updateOrCreate(
+        $destination    = Address::firstOrCreate(
             ['user_id' => $user->id, 'place_id' => $data['front']['waypoint_data']['to']['place_id']],
-            $data['front']['waypoint_data']['to']
+            $data['front']['waypoint_data']['to'] // holds all data of the address
         );
 
         // if has retour, first create retour-reservation
@@ -182,6 +188,27 @@ class FourthStepComponent extends StepComponent
         // redirect to success page
         redirect()->route('success');
 
+    }
+
+    public function processUserData()
+    {
+        // TODO: if we have a verified user: ask them to login
+        // TODO: and send notification & cancel submission.
+        // TEMP: as it is now: we hope that nobody uses another members' email address.
+        // this is low risk. Just adds the reservation to that users history.
+        $user = User::where('email', $this->email)->whereNotNull('email_verified_at')->first();
+        if(!$user){
+
+            // This is in case an email address was used before, without registering
+            // OR email was never used before.
+            $user = User::updateOrCreate(
+                ['email'  => $this->email],
+                ['name'  => $this->name, 'phone'  => $this->phone,]
+            );
+
+        }
+
+        return $user;
     }
 
     // references: App\Helpers\CustomReservationWizardState::forgetState()

@@ -29,6 +29,9 @@ class ThirdStepComponent extends StepComponent
         $request->session()->put('state', $this->state()->all());
 
         $this->getVehicles();
+
+        $this->dispatch('scroll-to-top');
+
     }
 
     public function render()

@@ -30,6 +30,9 @@ class SecondStepComponent extends StepComponent
     {
         // put current state in session with each new step.
         $request->session()->put('state', $this->state()->all());
+
+        $this->dispatch('scroll-to-top');
+
         
     }
 
