@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -22,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->group('universal', []);
+
+        // TODO: enable trustedhosts and implement domains cache. Look at tenancyserviceprovider::domaincreated//
+        // $middleware->trustHosts(at: fn () => config('app.trusted_hosts'));
 
     })
     ->withExceptions(function (Exceptions $exceptions) {

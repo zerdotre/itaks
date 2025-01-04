@@ -25,7 +25,6 @@ class FilamentHookServiceProvider extends ServiceProvider
         FilamentView::registerRenderHook(
             PanelsRenderHook::BODY_END,
             fn (): string => Blade::render('@livewire(\'wire-elements-modal\')'),
-            // fn (): string => Blade::render('@livewire(\'livewire-ui-modal\')'),
         );
     }
 }

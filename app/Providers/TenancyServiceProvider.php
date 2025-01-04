@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Jobs\CustomCreateDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Features\SupportFileUploads\FilePreviewController;
+use Livewire\Livewire;
 use Stancl\JobPipeline\JobPipeline;
 use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
+use Stancl\Tenancy\Resolvers\DomainTenantResolver;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 
 class TenancyServiceProvider extends ServiceProvider
 {
@@ -29,7 +32,7 @@ class TenancyServiceProvider extends ServiceProvider
                     // CustomCreateDatabase::class,
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
-                    // Jobs\SeedDatabase::class,
+                    Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
@@ -52,6 +55,7 @@ class TenancyServiceProvider extends ServiceProvider
             ],
 
             // Domain events
+            // TODO: enable trusted hosts & cache domains: https://telegra.ph/Laravel-11-Optimized-TrustHosts-Implementation-for-Tenancy-01-04
             Events\CreatingDomain::class => [],
             Events\DomainCreated::class => [],
             Events\SavingDomain::class => [],
@@ -106,10 +110,39 @@ class TenancyServiceProvider extends ServiceProvider
 
         $this->makeTenancyMiddlewareHighestPriority();
 
+        Livewire::setUpdateRoute(function ($handle) {
+            return \Illuminate\Support\Facades\Route::post('/livewire/update', $handle)
+                ->middleware(
+                    'web',
+                    'universal',
+                    InitializeTenancyByDomain::class, // or whatever tenancy middleware you use
+                );
+        });
+    
+        FilePreviewController::$middleware = ['web', 'universal', InitializeTenancyByDomain::class];
+
+        // cache domain lookups
+        $this->enableDomainCaching();
+
+
         // TODO: redirect to tenant not found page on central domain.
         // \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::$onFail = function () {
         //     return redirect('https://my-central-domain.com/');
         // };
+    }
+
+    private function enableDomainCaching(){
+
+        // enable cache
+        DomainTenantResolver::$shouldCache      = true;
+
+        // seconds, 3600 is the default value
+        DomainTenantResolver::$cacheTTL         = 3600;
+
+        // specify some cache store
+        // null resolves to the default cache store
+        DomainTenantResolver::$cacheStore = null; //'redis';
+
     }
 
     protected function bootEvents()

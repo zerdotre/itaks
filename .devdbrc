@@ -1,0 +1,18 @@
+[
+  {
+    "type": "sqlite",
+    "path": "/Users/zerre/www/itaks/database/landlord.sqlite"
+  },
+  {
+    "type": "sqlite",
+    "path": "/Users/zerre/www/itaks/database/tenants/duru.sqlite"
+  },
+  {
+    "type": "sqlite",
+    "path": "/Users/zerre/www/itaks/database/tenants/schipholtaxibv.sqlite"
+  },
+  {
+    "type": "sqlite",
+    "path": "/Users/zerre/www/itaks/database/tenants/f99aba14-571b-44fe-ad19-963f1b9bd5dd.sqlite"
+  }
+]

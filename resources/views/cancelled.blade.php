@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
     <div class="bg-white">
         <div class="mx-auto max-3xl py-8 sm:px-6 md:px-8">
             
@@ -36,4 +36,4 @@
 
         </div>
     </div>
-</x-app-layout>
+</x-layouts.app>

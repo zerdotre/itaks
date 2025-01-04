@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
     <div class="overflow-hidden rounded-lg border">
         
         <div class="bg-zinc-50 border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -29,4 +29,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-layouts.app>

@@ -18,7 +18,9 @@
         "spatie/laravel-google-calendar": "^3.8",
         "spatie/laravel-health": "^1.31",
         "spatie/laravel-livewire-wizard": "^2.3",
-        "stancl/tenancy": "^3.8"
+        "stancl/tenancy": "^3.8",
+        "tomatophp/filament-tenancy": "^1.0",
+        "wire-elements/modal": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

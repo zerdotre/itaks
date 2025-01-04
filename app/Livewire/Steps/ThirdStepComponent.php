@@ -20,10 +20,12 @@ class ThirdStepComponent extends StepComponent
     public function mount(Request $request)
     {
         // put a check in place for validating if session still has required data. Else forgetState()
-        if(empty($this->state()->prices())){
-            $this->forgetState($request);
-            return redirect('/');
-        }
+
+        // TEMP outcommented
+        // if(empty($this->state()->prices())){
+        //     $this->forgetState($request);
+        //     return redirect('/');
+        // }
 
         // put current state in session with each new step.
         $request->session()->put('state', $this->state()->all());
